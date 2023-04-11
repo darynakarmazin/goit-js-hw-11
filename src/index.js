@@ -9,6 +9,10 @@ const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const btnFindMore = document.querySelector('.load-more');
 
+const typeFailure = 'failure';
+const typeSuccess = 'success';
+const typeInfo = 'info';
+
 searchForm.addEventListener('submit', onSearch);
 btnFindMore.addEventListener('click', onFindMore);
 
@@ -16,29 +20,35 @@ function onSearch(event) {
   event.preventDefault();
 
   apiService.query = event.target.elements.searchQuery.value;
+  hiddBtn();
   apiService.resetPage();
   apiService
     .fetchFalleryImg()
-    .then(hits => {
+    .then(({ hits, totalHits }) => {
       if (hits.length === 0) {
         showError(error);
       }
       clearMarkup();
       appendMarkup(hits);
-      showMessage(
-        'success',
-        'Hooray! We found ${response.data.totalHits} images.'
-      );
+      createGallery();
+      showMessage(typeSuccess, `Hooray! We found ${totalHits} images.`);
+      showBtn();
     })
     .catch(showError);
 }
 
 function onFindMore() {
-  apiService.fetchFalleryImg().then(hits => appendMarkup(hits));
+  apiService
+    .fetchFalleryImg()
+    .then(({ hits, totalHits }) => {
+      appendMarkup(hits);
+      createGallery();
+    })
+    .catch(showError);
 }
 function appendMarkup(hits) {
-gallery.insertAdjacentHTML('beforeend', createDataMarkup(hits));
-};
+  gallery.insertAdjacentHTML('beforeend', createDataMarkup(hits));
+}
 
 function createDataMarkup(hits) {
   return (dataMarkup = hits
@@ -89,13 +99,31 @@ function showMessage(type, message) {
 
 function showError(error) {
   showMessage(
-    'failure',
+    typeFailure,
     'Sorry, there are no images matching your search query. Please try again.'
   );
   clearMarkup();
 }
 
-var lightbox = new SimpleLightbox('.gallery__item a', {
-  captionsData: 'alt',
-  captionDelay: 250,
+function showBtn() {
+  btnFindMore.hidden = false;
+}
+function hiddBtn() {
+  btnFindMore.hidden = true;
+}
+
+function createGallery() {
+  simpleLightBox = new SimpleLightbox('.gallery__item a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  }).refresh();
+}
+
+const { height: cardHeight } = document
+  .querySelector('.gallery')
+  .firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+  top: cardHeight * 2,
+  behavior: 'smooth',
 });

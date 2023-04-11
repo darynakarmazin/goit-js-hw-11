@@ -23,7 +23,7 @@ export class ApiFalleryImg {
     try {
       const response = await axios.get(URL, param);
       this.incrementPage();
-      return response.data.hits;
+      return response.data;
     } catch (error) {
       console.error(error);
     }
