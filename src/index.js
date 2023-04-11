@@ -120,7 +120,7 @@ function hiddBtn() {
 }
 
 function createGallery() {
-  simpleLightBox = new SimpleLightbox('.gallery__item a', {
+  let simpleLightBox = new SimpleLightbox('.gallery__item a', {
     captionsData: 'alt',
     captionDelay: 250,
   }).refresh();
