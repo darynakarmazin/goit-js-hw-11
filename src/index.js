@@ -43,6 +43,13 @@ function onFindMore() {
     .then(({ hits, totalHits }) => {
       appendMarkup(hits);
       createGallery();
+      if (apiService.perPage * apiService.page > totalHits) {
+        hiddBtn();
+        showMessage(
+          typeInfo,
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
     })
     .catch(showError);
 }

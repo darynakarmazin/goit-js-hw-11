@@ -63,7 +63,7 @@ button {
   max-width: 1140px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-auto-rows: 240px;
-  grid-gap: 12px;
+  grid-gap: 30px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
@@ -94,4 +94,15 @@ button {
 
 .gallery__link:hover {
   cursor: zoom-in;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12;
+}
+
+.load-more{
+  margin-top: 35px;
 }
