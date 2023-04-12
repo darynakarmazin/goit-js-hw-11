@@ -2,16 +2,13 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { ApiFalleryImg } from './fetchFalleryImg.js';
+import { typeFailure, typeSuccess, typeInfo } from './message.js';
 
 const apiService = new ApiFalleryImg();
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const btnFindMore = document.querySelector('.load-more');
-
-const typeFailure = 'failure';
-const typeSuccess = 'success';
-const typeInfo = 'info';
 
 searchForm.addEventListener('submit', onSearch);
 btnFindMore.addEventListener('click', onFindMore);
@@ -25,7 +22,6 @@ function onSearch(event) {
   apiService
     .fetchFalleryImg()
     .then(({ hits, totalHits }) => {
-      // console.log(hits.length);
       if (hits.length === 0) {
         showError();
       } else {
@@ -60,7 +56,7 @@ function appendMarkup(hits) {
 }
 
 function createDataMarkup(hits) {
-  return (hits
+  return hits
     .map(
       ({
         largeImageURL,
@@ -95,7 +91,7 @@ function createDataMarkup(hits) {
 `;
       }
     )
-    .join(' '));
+    .join(' ');
 }
 
 function clearMarkup() {
