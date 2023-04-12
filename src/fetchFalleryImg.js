@@ -7,6 +7,7 @@ export class ApiFalleryImg {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.perPage = 40;
   }
   async fetchFalleryImg() {
     const param = {
