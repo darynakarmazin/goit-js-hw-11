@@ -17,7 +17,7 @@ export class ApiFalleryImg {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: 'true',
-        per_page: 40,
+        per_page: this.perPage,
         page: this.page,
       },
     };
