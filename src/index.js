@@ -16,7 +16,7 @@ btnFindMore.addEventListener('click', onFindMore);
 function onSearch(event) {
   event.preventDefault();
 
-  apiService.query = event.target.elements.searchQuery.value;
+  apiService.query = event.target.elements.searchQuery.value.trim();
   hiddBtn();
   apiService.resetPage();
   apiService
