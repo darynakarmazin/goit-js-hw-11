@@ -27,7 +27,7 @@ function onSearch(event) {
     .then(({ hits, totalHits }) => {
       // console.log(hits.length);
       if (hits.length === 0) {
-        showError(error);
+        showError();
       } else {
         clearMarkup();
         appendMarkup(hits);
@@ -106,7 +106,7 @@ function showMessage(type, message) {
   Notiflix.Notify[type](message);
 }
 
-function showError(error) {
+function showError() {
   showMessage(
     typeFailure,
     'Sorry, there are no images matching your search query. Please try again.'
