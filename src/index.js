@@ -60,7 +60,7 @@ function appendMarkup(hits) {
 }
 
 function createDataMarkup(hits) {
-  return (dataMarkup = hits
+  return (hits
     .map(
       ({
         largeImageURL,
