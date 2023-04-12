@@ -41,6 +41,13 @@ function onFindMore() {
     .then(({ hits, totalHits }) => {
       appendMarkup(hits);
       createGallery();
+      const { height: cardHeight } = document
+        .querySelector('.gallery')
+        .firstElementChild.getBoundingClientRect();
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+      });
       if (apiService.perPage * apiService.page > totalHits) {
         hiddBtn();
         showMessage(
@@ -127,12 +134,3 @@ function createGallery() {
     captionDelay: 250,
   }).refresh();
 }
-
-// const { height: cardHeight } = document
-//   .querySelector('.gallery')
-//   .firstElementChild.getBoundingClientRect();
-
-// window.scrollBy({
-//   top: cardHeight * 2,
-//   behavior: 'smooth',
-// });
