@@ -25,14 +25,16 @@ function onSearch(event) {
   apiService
     .fetchFalleryImg()
     .then(({ hits, totalHits }) => {
+      // console.log(hits.length);
       if (hits.length === 0) {
         showError(error);
+      } else {
+        clearMarkup();
+        appendMarkup(hits);
+        createGallery();
+        showMessage(typeSuccess, `Hooray! We found ${totalHits} images.`);
+        showBtn();
       }
-      clearMarkup();
-      appendMarkup(hits);
-      createGallery();
-      showMessage(typeSuccess, `Hooray! We found ${totalHits} images.`);
-      showBtn();
     })
     .catch(showError);
 }
