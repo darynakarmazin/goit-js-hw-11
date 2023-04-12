@@ -117,6 +117,10 @@ function hiddBtn() {
   btnFindMore.hidden = true;
 }
 
+function toggleBtn() {
+  btnFindMore.hidden = !btnFindMore.hidden;
+}
+
 function createGallery() {
   let simpleLightBox = new SimpleLightbox('.gallery__item a', {
     captionsData: 'alt',
