@@ -33,14 +33,17 @@ ul {
   margin: 0 auto;
   padding: 15px;
   box-sizing: border-box;
-    background-image: repeating-radial-gradient(
+  background-image: repeating-radial-gradient(
     circle,
     rgba(128, 83, 128, 0.75),
     rgba(128, 0, 128, 0.75) 10px,
     #4b026fae 10px,
     #4b026fb9 20px
   );
+  background-image: url(https://krot.info/uploads/posts/2023-03/1680174673_krot-info-p-fon-s-melkimi-detalyami-instagram-4.png);
+  background-size: contain;
 }
+
 input {
   font: inherit;
   max-width: 320px;
@@ -103,6 +106,6 @@ button {
   font-size: 10;
 }
 
-.load-more{
+.load-more {
   margin-top: 35px;
 }
